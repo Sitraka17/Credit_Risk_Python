@@ -6,3 +6,6 @@ credit_records = pd.read_csv("credit_records.csv")
 
 # Display the first five rows of credit_records using the .head() method
 print(credit_records.head())
+
+
+#had to stop the project here in order to fully make it on a private one :'( 
