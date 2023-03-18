@@ -1,24 +1,20 @@
+import numpy as np
+import plotly.figure_factory as ff
 import streamlit as st
-import yfinance as yf
-import matplotlib.pyplot as plt
 
-# Set page title
-st.set_page_config(page_title="Credit Suisse Stock Price Evolution")
+# Add histogram data
+x1 = np.random.randn(200) - 2
+x2 = np.random.randn(200)
+x3 = np.random.randn(200) + 2
 
-def plot_stock_price_evolution(symbol):
-    # Get stock data from Yahoo Finance
-    data = yf.download(symbol, period='max')
+# Group data together
+hist_data = [x1, x2, x3]
 
-    # Plot stock price evolution
-    fig, ax = plt.subplots(figsize=(12, 6))
-    ax.plot(data['Close'])
-    ax.set_xlabel('Date')
-    ax.set_ylabel('Price')
-    ax.set_title(f'{symbol} Stock Price Evolution')
-    st.pyplot(fig)
+group_labels = ['Group 1', 'Group 2', 'Group 3']
 
-# Define stock symbol
-symbol = 'CS'
+# Create distplot with custom bin_size
+fig = ff.create_distplot(
+        hist_data, group_labels, bin_size=[.1, .25, .5])
 
-# Call the function to plot the stock price evolution
-plot_stock_price_evolution(symbol)
+# Plot!
+st.plotly_chart(fig, use_container_width=True)
