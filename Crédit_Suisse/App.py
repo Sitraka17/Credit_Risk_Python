@@ -20,8 +20,7 @@ start_date = st.sidebar.date_input("Start date", datetime.date(2019, 1, 1))
 end_date = st.sidebar.date_input("End date", datetime.date(2021, 1, 31))
 
 # Retrieving tickers data
-ticker_list = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/s-and-p-500-companies/master/data/constituents_symbols.txt')
-tickerSymbol = st.sidebar.selectbox('Stock ticker', ticker_list) # Select ticker symbol
+tickerSymbol = 'CS'
 tickerData = yf.Ticker(tickerSymbol) # Get ticker data
 tickerDf = tickerData.history(period='1d', start=start_date, end=end_date) #get the historical prices for this ticker
 
@@ -41,7 +40,7 @@ st.write(tickerDf)
 
 # Bollinger bands
 st.header('**Bollinger Bands**')
-qf=cf.QuantFig(tickerDf,title='First Quant Figure',legend='top',name='GS')
+qf=cf.QuantFig(tickerDf,title='First Quant Figure',legend='top',name='CS')
 qf.add_bollinger_bands()
 fig = qf.iplot(asFigure=True)
 st.plotly_chart(fig)
